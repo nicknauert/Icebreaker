@@ -3,14 +3,12 @@ const schema = mongoose.schema;
 
 
 const questionsSchema = new mongoose.Schema({
-  {
     Category: String,
     Type: String,
     Difficulty: String,
     Question: String,
     Correct_Answer: String,
     Incorrect_Answer: [{type: String}],
-  }
 })
 
 
