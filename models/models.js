@@ -2,22 +2,88 @@ const mongoose = require('mongoose');
 const schema = mongoose.schema;
 
 
-const triviaSchema = new mongoose.Schema({
-  info: {
-    catagory: String,
-    type: String,
-    difficulty: String,
-    question: String,
-    correct_answer: String,
-    incorrect_answer: [{type: String}],
+const musicEasySchema = new mongoose.Schema({
+  {
+    Category: String,
+    Type: String,
+    Difficulty: String,
+    Question: String,
+    Correct_Answer: String,
+    Incorrect_Answer: [{type: String}],
+  },
+})
+
+const musicHardSchema = new mongoose.Schema({
+  {
+    Category: String,
+    Type: String,
+    Difficulty: String,
+    Question: String,
+    Correct_Answer: String,
+    Incorrect_Answer: [{type: String}],
+  },
+})
+
+const sportsEasySchema = new mongoose.Schema({
+  {
+    Category: String,
+    Type: String,
+    Difficulty: String,
+    Question: String,
+    Correct_Answer: String,
+    Incorrect_Answer: [{type: String}],
+  },
+})
+
+const sportsHardSchema = new mongoose.Schema({
+  {
+    Category: String,
+    Type: String,
+    Difficulty: String,
+    Question: String,
+    Correct_Answer: String,
+    Incorrect_Answer: [{type: String}],
+  },
+})
+
+const computersEasySchema = new mongoose.Schema({
+ {
+   Category: String,
+   Type: String,
+   Difficulty: String,
+   Question: String,
+   Correct_Answer: String,
+   Incorrect_Answer: [{type: String}],
+  },
+})
+
+const computersHardSchema = new mongoose.Schema({
+  {
+    Category: String,
+    Type: String,
+    Difficulty: String,
+    Question: String,
+    Correct_Answer: String,
+    Incorrect_Answer: [{type: String}],
   },
 })
 
 
 
-const trivia = mongoose.model('trivia', triviaSchema);
+const musicEasySchema = mongoose.model('musicEasy', musicEasySchema);
+const musicHardSchema = mongoose.model('musicHard', musicHardSchema);
+const sportsEasySchema = mongoose.model('sportsEasy', sportsEasySchema);
+const sportsHardSchema = mongoose.model('sportsHard', sportsHardSchema);
+const computersEasySchema = mongoose.model('computersEasy', computersEasySchema);
+const computersHardSchema = mongoose.model('computersHard', computersHardSchema);
+
 
 
 module.exports = {
-  trivia
+  musicEasy,
+  musicHard,
+  sportsEasy,
+  sportsHard,
+  computersEasy,
+  computersHard
 }
