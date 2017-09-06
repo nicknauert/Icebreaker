@@ -21,6 +21,7 @@ function getTrivia(cat, diff){
 }
 
 
+
 module.exports = {
   getTrivia,
 }
