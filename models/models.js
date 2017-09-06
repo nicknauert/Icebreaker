@@ -1,15 +1,22 @@
 const mongoose = require('mongoose');
+const schema = mongoose.schema;
 
 
-
-const StudentSchema = new mongoose.Schema({
+const questionsSchema = new mongoose.Schema({
+  {
+    Category: String,
+    Type: String,
+    Difficulty: String,
+    Question: String,
+    Correct_Answer: String,
+    Incorrect_Answer: [{type: String}],
+  }
 })
 
 
-
-const Student = mongoose.model('Student', StudentSchema);
+const questionsSchema = mongoose.model('questions', questionsSchema);
 
 
 module.exports = {
-  Student
+  questions
 }
