@@ -7,9 +7,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
 const {} = require('./models/models.js');
+const session = require('express-session');
 
 
-mongoose.connect('mongodb://localhost:27017/snippetdb');
+mongoose.connect('mongodb://localhost:27017/trivia');
 
 app.engine('mustache', mustache())
 app.set('view engine', 'mustache')

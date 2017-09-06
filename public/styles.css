@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/*
+light grey - rgb(110, 125, 129)
+orange - rgb(255, 115, 0)
+dark grey - rgb(35, 40, 41)
+*/
+
+body {
+  background-color: rgb(110, 125, 129);
+}
+
+main {
+  padding: 20% 10%;
+}
