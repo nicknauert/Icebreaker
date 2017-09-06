@@ -6,7 +6,16 @@
   </head>
   <body>
     <main>
-
+      <div class="gameCont">
+        <div class="answers">
+          {{#answers}}
+          <button class="baseColor" type="button" name="{{answer}}" onclick="showAnswers()">{{.}}</button>
+          {{/answers}}
+        </div>
+        <div class="questionCont">
+          <h3>{{quote}}</h3>
+        </div>
+      </div>
 
     </main>
   </body>
