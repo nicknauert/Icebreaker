@@ -1,7 +1,16 @@
 const chalk = require('chalk');
 const {} = require('./models/models.js');
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird')
 
-function 
+function getTrivia(cat, diff){
+  return Trivia.find({$and: [{category: cat}, {difficulty: diff}]}).then((quesArr)=>{
+    let number = Math.floor(Math.random() * quesArr.length)
+    return quesArr[number]
+  })
+}
 
 
-module.exports = {}
+module.exports = {
+  getTrivia,
+}
