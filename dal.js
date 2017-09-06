@@ -1,30 +1,16 @@
 const chalk = require('chalk');
 const {} = require('./models/models.js');
+const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird')
-mongoose.connect('mongodb://localhost:27017/playerSchema', {
-  useMongoClient: true
-});
 
-<<<<<<< HEAD
-function getCategory(){
-  return
-}
-=======
-function 
-
->>>>>>> 2ecc9ddbacc443a9da04b13a88ff1fd177eeba1c
-
-function getDiff(){
-  return
-}
-
-function getTrivia(){
-  return
+function getTrivia(cat, diff){
+  return Trivia.find({$and: [{category: cat}, {difficulty: diff}]}).then((quesArr)=>{
+    let number = Math.floor(Math.random() * quesArr.length)
+    return quesArr[number]
+  })
 }
 
 
 module.exports = {
-  getCat,
-  getDif,
   getTrivia,
 }
