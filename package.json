@@ -1,7 +1,6 @@
 {
-  "name": "goalGroup",
+  "name": "icebreaker",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,5 +16,14 @@
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.10",
     "mustache-express": "^1.2.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lotushack/Icebreaker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lotushack/Icebreaker/issues"
+  },
+  "homepage": "https://github.com/lotushack/Icebreaker#readme",
+  "description": ""
 }

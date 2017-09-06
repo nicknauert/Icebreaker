@@ -9,7 +9,7 @@ mongoose.Promise = require('bluebird')
 const {} = require('./models/models.js');
 
 
-mongoose.connect('mongodb://localhost:27017/snippetdb');
+mongoose.connect('mongodb://localhost:27017/triviadb');
 
 app.engine('mustache', mustache())
 app.set('view engine', 'mustache')
@@ -31,8 +31,29 @@ app.use(session({
 
 
 //////////// Content Routes /////////////////
+app.get('/', function(req, res){
+  res.render('gameStarter')
+})
 
+app.post('/', function(req, res){
+  let cat = req.body.category
+  let form = req.body.difficulty
+  let sesh = req.session
+  getTrivia(cat, diff)
+  .then((ques) =>
+    sesh.question = ques.question
+    sesh.correctAns = ques.correct_answer
+    sesh.answers = ques.incorrect_answer
 
+  res.redirect('/game')
+})
+
+app.get('/gameStarter', function(req, res){
+
+})
+app.get('/game', function(req, res){
+
+})
 
 app.listen(3000, () => {
   console.log(chalk.green('App running on 3000. Better catch it.'))
