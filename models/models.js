@@ -10,7 +10,11 @@ const QuestionSchema = new mongoose.Schema({
     question: String,
     correct_answer: String,
 <<<<<<< HEAD
+<<<<<<< HEAD
     incorrect_answers: [{type: String}]
+=======
+    incorrect_answers: [{type: String}],
+>>>>>>> 4307236f1cb6e24ee979abf60e5f1a47468889eb
 =======
     incorrect_answers: [{type: String}],
 >>>>>>> 4307236f1cb6e24ee979abf60e5f1a47468889eb

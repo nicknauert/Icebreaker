@@ -8,20 +8,17 @@
     <main>
       <div class="gameCont">
         <div class="questionCont">
-          <h3>{{question}}</h3>
+
+          <h3>{{sesh.question}}</h3>
         </div>
         <div class="answers">
-
-          {{#answers}}
+          {{#sesh.answers}}
           <form class="" action="/game" method="POST">
-            <button class="baseColor" type="submit" name="{{answer}}">{{.}}</button>
+            <button class="baseColor" type="submit" name="{{.}}">{{.}}</button>
           </form>
-          {{/answers}}
+          {{/sesh.answers}}
         </div>
-
       </div>
-
     </main>
-
   </body>
 </html>
