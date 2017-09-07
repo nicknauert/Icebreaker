@@ -1,13 +1,12 @@
 const mongoose = require('mongoose')
-mongoose.Promise = require('bluebird');
+mongoose.Promise = require('bluebird')
 const chalk = require('chalk');
 const { Question } = require('./models/models.js');
-
+const {Trivia} = require('./models/models.js');
 
 
 function getQuestion(cat, diff){
   return Question.find({ category: cat, difficulty: diff }).then((quesArr)=>{
-
     let number = Math.floor(Math.random() * quesArr.length)
     return quesArr[number]
   })
