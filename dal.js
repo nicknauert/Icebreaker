@@ -1,24 +1,18 @@
 const mongoose = require('mongoose')
-mongoose.Promise = require('bluebird')
-mongoose.connect('mongodb://localhost:27017/triviadb', {
-  useMongoClient: true
-})
+mongoose.Promise = require('bluebird');
 const chalk = require('chalk');
-const { questions } = require('./models/models.js');
-const {Trivia} = require('./models/models.js');
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird')
+const { Question } = require('./models/models.js');
 
 
-checkAnswer(ans, chosenAns){
+function checkAnswer(ans, chosenAns){
   if(ans != chosenAns){
     return ""
   }
 }
 
+function getQuestion(cat, diff){
+  return Question.find({  difficulty: diff  }).then((quesArr)=>{
 
-function getTrivia(cat, diff){
-  return Trivia.find({$and: [{category: cat}, {difficulty: diff}]}).then((quesArr)=>{
     let number = Math.floor(Math.random() * quesArr.length)
     return quesArr[number]
   })
@@ -27,5 +21,5 @@ function getTrivia(cat, diff){
 
 
 module.exports = {
-  getTrivia,
+  getQuestion
 }

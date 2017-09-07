@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mustache = require('mustache-Express');
-const {getTrivia} = require('./dal');
+const {getQuestion} = require('./dal');
 const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,7 +9,7 @@ mongoose.Promise = require('bluebird');
 const {} = require('./models/models.js');
 const session = require('express-session');
 
-mongoose.connect('mongodb://localhost:27017/trivia', {mongoClient: true});
+mongoose.connect('mongodb://localhost:27017/triviadb', {mongoClient: true});
 
 app.engine('mustache', mustache())
 app.set('view engine', 'mustache')
@@ -32,28 +32,33 @@ app.use(session({
 
 //////////// Content Routes /////////////////
 app.get('/', function(req, res){
-  res.render('gameStarter')
+  res.render('gameStarter');
 })
 
 app.post('/', function(req, res){
   let cat = req.body.category
-  let form = req.body.difficulty
+  let diff = req.body.difficulty
   let sesh = req.session
-  getTrivia(cat, diff)
+
+  getQuestion(cat, diff)
   .then((ques) =>{
-    console.log(ques);
+    console.log("App.js >>", ques);
     sesh.question = ques.question
     sesh.correctAns = ques.correct_answer
-    sesh.answers = ques.incorrect_answer.push(sesh.correctAns)
+    let answers = ques.incorrect_answers.push(ques.correct_answer)
+    console.log("answers = ", );
+    res.redirect('/game')
   });
-  res.redirect('/game')
+
 })
 
 app.get('/gameStarter', function(req, res){
 
 })
-app.get('/game', function(req, res){
 
+app.get('/game', function(req, res){
+  console.log(req.session);
+  res.send("worked maybe.")
 })
 
 
