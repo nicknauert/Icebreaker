@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Trivia</title>
-
+    <meta charset="utf-8">
+    <title>Uh oh...</title>
   </head>
   <body>
     <main>
       <div class="gameCont">
         <div class="questionCont">
-          <h3>{{sesh.question}}</h3>
+          <h3>{{question}}</h3>
         </div>
         <div class="answers">
-          {{#sesh.answers}}
+
+          {{#answers}}
           <form class="" action="/game" method="POST">
-            <button class="baseColor" type="submit" name="{{.}}">{{.}}</button>
+            <button class="baseColor" type="submit" name="{{answer}}">{{.}}</button>
           </form>
-          {{/sesh.answers}}
+          {{/answers}}
         </div>
+
       </div>
+
     </main>
+
   </body>
 </html>
