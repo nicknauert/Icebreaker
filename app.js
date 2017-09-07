@@ -41,12 +41,17 @@ app.post('/', function(req, res){
   let sesh = req.session
   getQuestion(cat, diff)
   .then((ques) =>{
-    sesh.Question = ques.Question
-    sesh.correctAns = ques.correct_answer
-    let answers = ques.incorrect_answers
-    answers.push(ques.correct_answer)
-    console.log(ques.correct_answer);
-    res.redirect('/game')
+    console.log(ques);
+    sesh.trivia = {}
+    sesh.trivia.question = ques.question
+    let answers = []
+    ques.incorrect_answers.forEach((item) => {
+      answers.push(item);
+    })
+    answers.push(ques.correct_answer);
+    sesh.trivia.answers = answers;
+    console.log("answers = ", answers);
+    res.redirect('/game');
   });
 
 })
