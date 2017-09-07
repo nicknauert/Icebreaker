@@ -4,14 +4,11 @@ const chalk = require('chalk');
 const { Question } = require('./models/models.js');
 const {Trivia} = require('./models/models.js');
 
-
-
-// checkAnswer(ans, chosenAns){
-//   if(ans != chosenAns){
-//     return ""
-//   }
-// }
-
+function checkAnswer(ans, chosenAns){
+  if(ans != chosenAns){
+    return ""
+  }
+}
 
 function getQuestion(cat, diff){
   return Question.find({category: cat}, {difficulty: diff}).then((quesArr)=>{
@@ -19,8 +16,6 @@ function getQuestion(cat, diff){
     return quesArr[number]
   })
 }
-
-
 
 module.exports = {
   getQuestion,

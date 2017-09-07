@@ -4,12 +4,12 @@ const schema = mongoose.schema;
 
 
 const QuestionSchema = new mongoose.Schema({
-    Category: String,
-    Type: String,
-    Difficulty: String,
-    Question: String,
-    Correct_Answer: String,
-    Incorrect_Answer: [{type: String}],
+    category: String,
+    type: String,
+    difficulty: String,
+    question: String,
+    correct_answer: String,
+    incorrect_answer: [{type: String}],
 })
 
 

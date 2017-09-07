@@ -32,7 +32,7 @@ app.use(session({
 
 //////////// Content Routes /////////////////
 app.get('/', function(req, res){
-  res.render('gameStarter')
+  res.render('gameStarter');
 })
 
 app.post('/', function(req, res){
@@ -41,19 +41,23 @@ app.post('/', function(req, res){
   let sesh = req.session
   getQuestion(cat, diff)
   .then((ques) =>{
-    console.log(ques);
-    sesh.question = ques.question
+    sesh.Question = ques.Question
     sesh.correctAns = ques.correct_answer
-    sesh.answers = ques.incorrect_answer.push(sesh.correctAns)
+    let answers = ques.incorrect_answers
+    answers.push(ques.correct_answer)
+    console.log(ques.correct_answer);
+    res.redirect('/game')
   });
-  res.redirect('/game')
+
 })
 
 app.get('/gameStarter', function(req, res){
 
 })
-app.get('/game', function(req, res){
 
+app.get('/game', function(req, res){
+  console.log(req.session);
+  res.send("worked maybe.")
 })
 
 
