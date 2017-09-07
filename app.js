@@ -9,7 +9,7 @@ mongoose.Promise = require('bluebird');
 const {} = require('./models/models.js');
 const session = require('express-session');
 
-mongoose.connect('mongodb://localhost:27017/trivia', {usemongoClient: true});
+mongoose.connect('mongodb://localhost:27017/triviadb', {mongoClient: true});
 
 app.engine('mustache', mustache())
 app.set('view engine', 'mustache')
@@ -39,12 +39,14 @@ app.post('/', function(req, res){
   let cat = req.body.category
   let diff = req.body.difficulty
   let sesh = req.session
+
   getQuestion(cat, diff)
   .then((ques) =>{
-    console.log(ques);
+    console.log(ques.incorrect_answer);
     sesh.trivia = {}
     sesh.trivia.question = ques.question
     let answers = []
+    console.log(ques.incorrect_answers)
     ques.incorrect_answers.forEach((item) => {
       answers.push(item);
     })

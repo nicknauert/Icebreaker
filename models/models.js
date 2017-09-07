@@ -9,7 +9,7 @@ const QuestionSchema = new mongoose.Schema({
     difficulty: String,
     question: String,
     correct_answer: String,
-    incorrect_answer: [{type: String}],
+    incorrect_answers: [{type: String}],
 })
 
 
