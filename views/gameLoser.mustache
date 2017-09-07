@@ -2,8 +2,7 @@
 <html>
   <head>
     <title>Trivia</title>
-    <link rel="stylesheet" href="/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:300, 400" rel="stylesheet">
+
   </head>
   <body>
     <main>
@@ -14,7 +13,7 @@
         <div class="answers">
           {{#sesh.answers}}
           <form class="" action="/game" method="POST">
-            <button class="answerBtn baseColor" type="submit" value="{{.}}" name="pick">{{.}}</button>
+            <button class="baseColor" type="submit" name="{{.}}">{{.}}</button>
           </form>
           {{/sesh.answers}}
         </div>

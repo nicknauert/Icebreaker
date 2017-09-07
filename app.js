@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mustache = require('mustache-Express');
-const {getQuestion} = require('./dal');
+const {getQuestion, replaceUnicode } = require('./dal');
 const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -18,7 +18,7 @@ app.set('views', __dirname + '/views')
 
 ////////////// MIDDLEWARE //////////////
 
-app.use(express.static('./frontend/public'));
+app.use(express.static('./public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
@@ -43,26 +43,59 @@ app.post('/', function(req, res){
   getQuestion(cat, diff)
   .then((ques) =>{
     sesh.trivia = {}
-    sesh.trivia.question = ques.question
+    sesh.trivia.cat = cat;
+    sesh.trivia.diff = diff;
+    sesh.trivia.question = replaceUnicode(ques.question);
+    sesh.trivia.correctAns = replaceUnicode(ques.correct_answer);
     let answers = []
     ques.incorrect_answers.forEach((item) => {
-      answers.push(item);
+      answers.push(replaceUnicode(item));
     })
-    answers.push(ques.correct_answer);
+    let number = Math.floor(Math.random() * 3)+1
+    console.log(chalk.blue(number));
+    answers.splice(number, 0, ques.correct_answer);
     sesh.trivia.answers = answers;
     console.log("answers = ", answers);
     res.redirect('/game');
   });
-
-})
-
-app.get('/gameStarter', function(req, res){
-
 })
 
 app.get('/game', function(req, res){
   console.log(req.session);
-  res.send("worked maybe.")
+  let sesh = req.session.trivia;
+  res.render('game', { sesh });
+})
+
+app.post('/game', (req, res)=>{
+  let sesh = req.session;
+  let pick = req.body.pick;
+  let correctAns = req.session.trivia.correctAns;
+  let cat = sesh.trivia.cat;
+  let diff = sesh.trivia.diff;
+  console.log(chalk.green(pick, correctAns));
+  if(pick != correctAns){
+    res.render('gameLoser', { sesh })
+  } else {
+    getQuestion(cat, diff)
+    .then((ques) =>{
+      sesh.trivia = {};
+      sesh.trivia.cat = cat;
+      sesh.trivia.diff = diff;
+      sesh.trivia.question = replaceUnicode(ques.question);
+      sesh.trivia.correctAns = replaceUnicode(ques.correct_answer);
+      let answers = [];
+      ques.incorrect_answers.forEach((item) => {
+        answers.push(replaceUnicode(item));
+      })
+      let number = Math.floor(Math.random() * 3)
+      console.log(chalk.blue(number));
+      answers.splice(number, 0, ques.correct_answer);
+      sesh.trivia.answers = answers;
+      console.log("answers = ", answers);
+      res.redirect('/game');
+    });
+  }
+
 })
 
 
