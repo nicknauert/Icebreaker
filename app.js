@@ -18,7 +18,7 @@ app.set('views', __dirname + '/views')
 
 ////////////// MIDDLEWARE //////////////
 
-app.use(express.static('./frontend/public'));
+app.use(express.static('./public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
@@ -51,7 +51,9 @@ app.post('/', function(req, res){
     ques.incorrect_answers.forEach((item) => {
       answers.push(item);
     })
-    answers.push(ques.correct_answer);
+    let number = Math.floor(Math.random() * 3)+1
+    console.log(chalk.blue(number));
+    answers.splice(number, 0, ques.correct_answer);
     sesh.trivia.answers = answers;
     console.log("answers = ", answers);
     res.redirect('/game');
@@ -85,7 +87,9 @@ app.post('/game', (req, res)=>{
       ques.incorrect_answers.forEach((item) => {
         answers.push(item);
       })
-      answers.push(ques.correct_answer);
+      let number = Math.floor(Math.random() * 3)
+      console.log(chalk.blue(number));
+      answers.splice(number, 0, ques.correct_answer);
       sesh.trivia.answers = answers;
       console.log("answers = ", answers);
       res.redirect('/game');
