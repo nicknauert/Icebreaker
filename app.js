@@ -43,7 +43,10 @@ app.post('/', function(req, res){
   getQuestion(cat, diff)
   .then((ques) =>{
     sesh.trivia = {}
-    sesh.trivia.question = ques.question
+    sesh.trivia.cat = cat;
+    sesh.trivia.diff = diff;
+    sesh.trivia.question = ques.question;
+    sesh.trivia.correctAns = ques.correct_answer;
     let answers = []
     ques.incorrect_answers.forEach((item) => {
       answers.push(item);
@@ -53,16 +56,42 @@ app.post('/', function(req, res){
     console.log("answers = ", answers);
     res.redirect('/game');
   });
-
-})
-
-app.get('/gameStarter', function(req, res){
-
 })
 
 app.get('/game', function(req, res){
   console.log(req.session);
-  res.send("worked maybe.")
+  let sesh = req.session.trivia;
+  res.render('game', { sesh });
+})
+
+app.post('/game', (req, res)=>{
+  let sesh = req.session;
+  let pick = req.body.pick;
+  let correctAns = req.session.trivia.correctAns;
+  let cat = sesh.trivia.cat;
+  let diff = sesh.trivia.diff;
+  console.log(chalk.green(pick, correctAns));
+  if(pick != correctAns){
+    res.render('gameLoser', { sesh })
+  } else {
+    getQuestion(cat, diff)
+    .then((ques) =>{
+      sesh.trivia = {};
+      sesh.trivia.cat = cat;
+      sesh.trivia.diff = diff;
+      sesh.trivia.question = ques.question;
+      sesh.trivia.correctAns = ques.correct_answer;
+      let answers = [];
+      ques.incorrect_answers.forEach((item) => {
+        answers.push(item);
+      })
+      answers.push(ques.correct_answer);
+      sesh.trivia.answers = answers;
+      console.log("answers = ", answers);
+      res.redirect('/game');
+    });
+  }
+
 })
 
 
