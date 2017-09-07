@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mustache = require('mustache-Express');
-const {getTrivia} = require('./dal');
+const {getQuestion} = require('./dal');
 const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,7 +9,7 @@ mongoose.Promise = require('bluebird');
 const {} = require('./models/models.js');
 const session = require('express-session');
 
-mongoose.connect('mongodb://localhost:27017/trivia', {mongoClient: true});
+mongoose.connect('mongodb://localhost:27017/trivia', {usemongoClient: true});
 
 app.engine('mustache', mustache())
 app.set('view engine', 'mustache')
@@ -37,9 +37,9 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
   let cat = req.body.category
-  let form = req.body.difficulty
+  let diff = req.body.difficulty
   let sesh = req.session
-  getTrivia(cat, diff)
+  getQuestion(cat, diff)
   .then((ques) =>{
     console.log(ques);
     sesh.question = ques.question
