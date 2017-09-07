@@ -13,7 +13,7 @@
         <div class="answers">
           {{#sesh.answers}}
           <form class="" action="/game" method="POST">
-            <button class="answerBtn baseColor" type="submit" value="{{.}}" name="pick" >{{.}}</button>
+            <button class="baseColor" type="submit" name="{{.}}">{{.}}</button>
           </form>
           {{/sesh.answers}}
         </div>
