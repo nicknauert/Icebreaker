@@ -7,14 +7,18 @@
   <body>
     <main>
       <div class="gameCont">
+        <div class="questionCont">
+          <h3>{{question}}</h3>
+        </div>
         <div class="answers">
+
           {{#answers}}
-          <button class="baseColor" type="button" name="{{answer}}" onclick="showAnswers()">{{.}}</button>
+          <form class="" action="/game" method="POST">
+            <button class="baseColor" type="submit" name="{{answer}}">{{.}}</button>
+          </form>
           {{/answers}}
         </div>
-        <div class="questionCont">
-          <h3>{{quote}}</h3>
-        </div>
+
       </div>
 
     </main>

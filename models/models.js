@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const schema = mongoose.schema;
 
 
-const questionsSchema = new mongoose.Schema({
+
+const QuestionSchema = new mongoose.Schema({
     Category: String,
     Type: String,
     Difficulty: String,
@@ -12,9 +13,9 @@ const questionsSchema = new mongoose.Schema({
 })
 
 
-const questionsSchema = mongoose.model('questions', questionsSchema);
+const Question = mongoose.model('Question', QuestionSchema);
 
 
 module.exports = {
-  questions
+  Question
 }
