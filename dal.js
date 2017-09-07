@@ -14,7 +14,17 @@ function getQuestion(cat, diff){
 }
 
 
+function replaceUnicode(string) {
+  let oneQuote = string.replace(/&quot;/gi, '"');
+  let twoQuote = oneQuote.replace(/&quot;/gi, '"');
+  let threeQuote = twoQuote.replace(/&amp;/gi, '&');
+  let fourQuote = threeQuote.replace(/&#039;/gi, "'");
+
+  let finalStr = fourQuote.replace(/&Uuml;/gi, "Ü");
+  return finalStr
+}
 
 module.exports = {
-  getQuestion
+  getQuestion,
+  replaceUnicode
 }
