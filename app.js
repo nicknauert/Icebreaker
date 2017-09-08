@@ -31,6 +31,7 @@ app.use(session({
 
 
 //////////// Content Routes /////////////////
+
 app.get('/', function(req, res){
   res.render('gameStarter');
 })
@@ -49,11 +50,14 @@ app.post('/', function(req, res){
     sesh.trivia.correctAns = replaceUnicode(ques.correct_answer);
     let answers = []
     ques.incorrect_answers.forEach((item) => {
-      answers.push(replaceUnicode(item));
+      let incObj = {answer: item, correct: false };
+      incObj.answer = replaceUnicode(incObj.answer);
+      answers.push(incObj);
     })
     let number = Math.floor(Math.random() * 3)+1
     console.log(chalk.blue(number));
-    answers.splice(number, 0, ques.correct_answer);
+    let corObj = {answer: ques.correct_answer, correct: true }
+    answers.splice(number, 0, corObj);
     sesh.trivia.answers = answers;
     console.log("answers = ", answers);
     res.redirect('/game');
@@ -85,11 +89,13 @@ app.post('/game', (req, res)=>{
       sesh.trivia.correctAns = replaceUnicode(ques.correct_answer);
       let answers = [];
       ques.incorrect_answers.forEach((item) => {
-        answers.push(replaceUnicode(item));
+        let incObj = {answer: item, correct: false }
+        answers.push(replaceUnicode(incObj));
       })
       let number = Math.floor(Math.random() * 3)
       console.log(chalk.blue(number));
-      answers.splice(number, 0, ques.correct_answer);
+      let corObj = {answer: ques.correct_answer, correct: true }
+      answers.splice(number, 0, corObj);
       sesh.trivia.answers = answers;
       console.log("answers = ", answers);
       res.redirect('/game');

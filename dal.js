@@ -4,10 +4,8 @@ const chalk = require('chalk');
 const { Question } = require('./models/models.js');
 
 
-
 function getQuestion(cat, diff){
   return Question.find({ category: cat, difficulty: diff }).then((quesArr)=>{
-
     let number = Math.floor(Math.random() * quesArr.length)
     return quesArr[number]
   })
@@ -19,10 +17,11 @@ function replaceUnicode(string) {
   let twoQuote = oneQuote.replace(/&quot;/gi, '"');
   let threeQuote = twoQuote.replace(/&amp;/gi, '&');
   let fourQuote = threeQuote.replace(/&#039;/gi, "'");
-
+  let fiveQuote = fourQuote.replace(/&eacute;/gi, "é");
   let finalStr = fourQuote.replace(/&Uuml;/gi, "Ü");
   return finalStr
 }
+
 
 module.exports = {
   getQuestion,

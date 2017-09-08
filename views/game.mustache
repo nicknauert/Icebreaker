@@ -3,7 +3,7 @@
   <head>
     <title>Trivia</title>
     <link rel="stylesheet" href="/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:300, 400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
   </head>
   <body>
     <main>
@@ -13,12 +13,20 @@
         </div>
         <div class="answers">
           {{#sesh.answers}}
-          <form class="" action="/game" method="POST">
-            <button class="answerBtn baseColor" type="submit" value="{{.}}" name="pick">{{.}}</button>
-          </form>
+            {{#correct}}
+              <form class="" action="/game" method="POST">
+                <button class="answerBtn baseColor correctAns" type="submit" value="correct" name="pick">{{answer}}</button>
+              </form>
+            {{/correct}}
+            {{^correct}}
+              <button class="answerBtn baseColor wrongAns" type="button" value="wrong" name="pick" onclick="showAnswers()">{{answer}}</button>
+            {{/correct}}
           {{/sesh.answers}}
         </div>
       </div>
+      <div class="bgDec">
+      </div>
     </main>
+    <script src="/main.js" charset="utf-8"></script>
   </body>
 </html>
