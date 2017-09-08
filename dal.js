@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-mongoose.Promise = require('bluebird');
+mongoose.Promise = require('bluebird')
 const chalk = require('chalk');
 const { Question } = require('./models/models.js');
 
@@ -10,7 +10,6 @@ function getQuestion(cat, diff){
     return quesArr[number]
   })
 }
-
 
 function replaceUnicode(string) {
   let oneQuote = string.replace(/&quot;/gi, '"');

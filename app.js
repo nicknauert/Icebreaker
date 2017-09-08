@@ -43,12 +43,14 @@ app.post('/', function(req, res){
 
   getQuestion(cat, diff)
   .then((ques) =>{
+    console.log(ques.incorrect_answer);
     sesh.trivia = {}
     sesh.trivia.cat = cat;
     sesh.trivia.diff = diff;
     sesh.trivia.question = replaceUnicode(ques.question);
     sesh.trivia.correctAns = replaceUnicode(ques.correct_answer);
     let answers = []
+    console.log(ques.incorrect_answers)
     ques.incorrect_answers.forEach((item) => {
       let incObj = {answer: item, correct: false };
       incObj.answer = replaceUnicode(incObj.answer);
