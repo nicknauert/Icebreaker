@@ -18,7 +18,7 @@ function replaceUnicode(string) {
   let threeQuote = twoQuote.replace(/&amp;/gi, '&');
   let fourQuote = threeQuote.replace(/&#039;/gi, "'");
   let fiveQuote = fourQuote.replace(/&eacute;/gi, "é");
-  let finalStr = fourQuote.replace(/&Uuml;/gi, "Ü");
+  let finalStr = fiveQuote.replace(/&Uuml;/gi, "Ü");
   return finalStr
 }
 
