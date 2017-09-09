@@ -9,13 +9,6 @@ function showAnswers(){
     item.classList.add('wrongColor');
   })
   document.querySelector(".correctAns").classList.add('correctColor');
-
-<<<<<<< HEAD
-=======
-  document.querySelector("button").classList.remove('baseColor');
-  document.querySelector(".answer").classList.add('correctColor');
-  document.querySelector(".wrongAnswer").classList.add('wrongColor');
-
 }
 
 
@@ -41,7 +34,6 @@ function startTimer(id, endtime){
       clearInterval(timeinterval);
     }
   },1000);
->>>>>>> 88d651bee2db7c54704d48d7aa50e42801561334
 }
 
 startTimer('timer', totalTime)
