@@ -10,19 +10,17 @@ function showAnswers(){
   })
   document.querySelector(".correctAns").classList.add('correctColor');
 
-<<<<<<< HEAD
-=======
   document.querySelector("button").classList.remove('baseColor');
   document.querySelector(".answer").classList.add('correctColor');
   document.querySelector(".wrongAnswer").classList.add('wrongColor');
 
 }
 
-
 // ========== timer code ==========
-const fifteenSeconds = .16667;
+const tenSeconds = .16667;
 const currentTime = Date.parse(new Date());
-const totalTime = new Date(currentTime + fifteenSeconds*60*1000);
+const totalTime = new Date(currentTime + tenSeconds*60*1000);
+const audio = document.querySelector('audio')
 
 function createTimer(endtime){
   const t = Date.parse(endtime) - Date.parse(new Date());
@@ -34,7 +32,7 @@ function createTimer(endtime){
 
 function startTimer(id, endtime){
   const timer = document.getElementById(id);
-  const timeinterval = setInterval(function(){
+  const timeinterval = setInterval(()=> {
     const t = createTimer(endtime);
     timer.innerHTML = t.seconds;
     if(t.total <= 0){
@@ -43,5 +41,12 @@ function startTimer(id, endtime){
   },1000);
 >>>>>>> 88d651bee2db7c54704d48d7aa50e42801561334
 }
+
+//code base from stack overflow on audio timer
+audio.addEventListener('canplaythrough', function() {
+  setTimeout(function() {
+    audio.pause()
+  }, 10000);
+}, false)
 
 startTimer('timer', totalTime)
