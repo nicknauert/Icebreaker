@@ -6,7 +6,11 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300, 400" rel="stylesheet">
   </head>
   <body>
-    <main>
+    <main class="gamePage">
+      <!-- === TIMER AND AUDIO === -->
+      <div id="timer" style="font-size: 2em; text-align: center; padding-top: 0.5em"></div>
+      <audio autoplay src="/Jeopardy - 2008 - Think Music.mp3"></audio>
+      <!-- ^^^ timer/audio above ^^^ -->
       <div class="gameCont">
         <div class="questionCont">
           <h3>{{sesh.question}}</h3>
@@ -20,5 +24,6 @@
         </div>
       </div>
     </main>
+  <script src="/main.js"></script>
   </body>
 </html>
