@@ -31,6 +31,7 @@ app.use(session({
 
 
 //////////// Content Routes /////////////////
+
 app.get('/', function(req, res){
   res.render('gameStarter');
 })
@@ -51,11 +52,14 @@ app.post('/', function(req, res){
     let answers = []
     console.log(ques.incorrect_answers)
     ques.incorrect_answers.forEach((item) => {
-      answers.push(replaceUnicode(item));
+      let incObj = {answer: item, correct: false };
+      incObj.answer = replaceUnicode(incObj.answer);
+      answers.push(incObj);
     })
     let number = Math.floor(Math.random() * 3)+1
     console.log(chalk.blue(number));
-    answers.splice(number, 0, ques.correct_answer);
+    let corObj = {answer: ques.correct_answer, correct: true }
+    answers.splice(number, 0, corObj);
     sesh.trivia.answers = answers;
     console.log("answers = ", answers);
     res.redirect('/game');
@@ -75,28 +79,32 @@ app.post('/game', (req, res)=>{
   let cat = sesh.trivia.cat;
   let diff = sesh.trivia.diff;
   console.log(chalk.green(pick, correctAns));
-  if(pick != correctAns){
-    res.render('gameLoser', { sesh })
-  } else {
+  // if(pick != "correct"){
+  //   res.render('gameLoser', { sesh })
+  // } else {
     getQuestion(cat, diff)
     .then((ques) =>{
       sesh.trivia = {};
       sesh.trivia.cat = cat;
       sesh.trivia.diff = diff;
+      console.log("On post >> ", ques);
       sesh.trivia.question = replaceUnicode(ques.question);
       sesh.trivia.correctAns = replaceUnicode(ques.correct_answer);
       let answers = [];
       ques.incorrect_answers.forEach((item) => {
-        answers.push(replaceUnicode(item));
+        let incObj = {answer: item, correct: false }
+        incObj.answer = replaceUnicode(incObj.answer);
+        answers.push(incObj);
       })
       let number = Math.floor(Math.random() * 3)
       console.log(chalk.blue(number));
-      answers.splice(number, 0, ques.correct_answer);
+      let corObj = {answer: ques.correct_answer, correct: true }
+      answers.splice(number, 0, corObj);
       sesh.trivia.answers = answers;
       console.log("answers = ", answers);
       res.redirect('/game');
     });
-  }
+
 
 })
 

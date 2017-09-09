@@ -13,11 +13,26 @@ dark grey - rgb(35, 40, 41)
 */
 
 body {
-  background-color: rgb(110, 125, 129);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-image: linear-gradient(-135deg, rgb(143, 164, 170), rgb(60, 84, 91));
 }
 
 main {
   /*display: flex;*/
+}
+
+.bgDec {
+  background-image: linear-gradient(0deg, rgb(29, 38, 40), rgb(51, 60, 62));
+  border-bottom: 8px solid rgb(255, 99, 0);
+  height: 1000px;
+  width: 2000px;
+  position: absolute;
+  top: -500px;
+  left: 90px;
+  transform: rotate(45deg);
+  z-index: -1;
 }
 
 
@@ -36,9 +51,13 @@ main {
   height: 500px;
   width: 350px;
   padding: 40px 15px;
-  font-weight: 300;
   font-size: 28px;
+  border-right: 4px solid rgb(60, 77, 82);
   background-image: linear-gradient(90deg, rgb(29, 38, 40), rgb(42, 49, 51));
+}
+
+.questionCont>h3 {
+  font-weight: 300;
 }
 
 .answers {
@@ -60,6 +79,7 @@ main {
   text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.54);
   border: transparent;
   border-bottom: 4px solid rgb(255, 99, 0);
+  flex: 1;
 }
 
 .answerBtn:hover {

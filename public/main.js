@@ -1,24 +1,20 @@
-// document.getElementById("MyElement").classList.add('MyClass');
-//
-// document.getElementById("MyElement").classList.remove('MyClass');
-//
-//
-// function showAnswers(){
-//
-//   document.querySelector("button").classList.remove('baseColor');
-//   document.querySelector(".answer").classList.add('correctColor');
-//   document.querySelector(".wrongAnswer").classList.add('wrongColor');
-//
-// }
-// //========== event listener ==========
-// const main = document.querySelector('.gamePage')
-//
-// main.addEventListener('load', function(event) {
-//   event.preventDefault()
-//   console.log('load event listener woked');
-// })
 
+function showAnswers(){
+  let basecolor = document.querySelectorAll(".baseColor");
+  basecolor.forEach((item) => {
+    item.classList.remove("baseColor");
+  })
+  let wrongArr = document.querySelectorAll(".wrongAns");
+  wrongArr.forEach((item) => {
+    item.classList.add('wrongColor');
+  })
+  document.querySelector(".correctAns").classList.add('correctColor');
 
+  document.querySelector("button").classList.remove('baseColor');
+  document.querySelector(".answer").classList.add('correctColor');
+  document.querySelector(".wrongAnswer").classList.add('wrongColor');
+
+}
 
 // ========== timer code ==========
 const tenSeconds = .16667;
@@ -43,6 +39,7 @@ function startTimer(id, endtime){
       clearInterval(timeinterval);
     }
   },1000);
+>>>>>>> 88d651bee2db7c54704d48d7aa50e42801561334
 }
 
 //code base from stack overflow on audio timer
