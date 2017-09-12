@@ -10,7 +10,7 @@
 light grey - rgb(110, 125, 129)
 orange - rgb(255, 99, 0)
 dark grey - rgb(35, 40, 41)
-*/
+/**/
 
 body {
   height: 100vh;
@@ -47,6 +47,13 @@ main {
   color: white;
 }
 
+#timer {
+  position: absolute;
+  top: 30%;
+  left: 150px;
+  font-size: 50px;
+}
+
 .questionCont {
   height: 500px;
   width: 350px;
@@ -78,28 +85,29 @@ main {
   color: white;
   text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.54);
   border: transparent;
-  border-bottom: 4px solid rgb(255, 99, 0);
   flex: 1;
 }
 
-.answerBtn:hover {
-  border-bottom: 4px solid rgb(105, 255, 0);
+.answerBtn:focus {
+  outline: none;
 }
 
 .baseColor {
+  border-bottom: 4px solid rgb(255, 99, 0);
   background-image: linear-gradient(0deg, rgb(130, 151, 157), rgb(156, 172, 177));
 }
 
 .baseColor:hover {
+  border-bottom: 4px solid rgb(105, 255, 0);
   background-image: linear-gradient(0deg, rgb(156, 172, 177), rgb(130, 151, 157));
 }
 
 .correctColor {
-  background-image: linear-gradient(0deg, rgb(70, 158, 73), rgb(104, 187, 108));
+  background-image: linear-gradient(0deg, rgb(7, 231, 36), rgb(7, 249, 140));
 }
 
 .wrongColor {
-  background-image: linear-gradient(0deg, rgb(158, 87, 87), rgb(180, 97, 97));
+  background-image: linear-gradient(0deg, rgb(255, 99, 0), rgb(254, 129, 38));
 }
 
 
@@ -147,5 +155,70 @@ main {
 
 .triviaForm>button:hover {
   border-bottom: 4px solid rgb(105, 255, 0);
-  background-image: linear-gradient(0deg, rgb(156, 172, 177), rgb(130, 151, 157), );
+  background-image: linear-gradient(0deg, rgb(156, 172, 177), rgb(130, 151, 157));
+}
+
+
+/*============  TIMER ANIMATION ==================*/
+
+.timerCont {
+  position: absolute;
+  top: 100px;
+  left: -80px;
+}
+
+.glassCont {
+  height: 500px;
+  width: 70px;
+  position: absolute;
+  left: 300px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.glass {
+  height: 100%;
+  width: 200%;
+  position: relative;
+  left: 60px;
+  background-color: white;
+  opacity: .3;
+}
+
+.bar {
+  height: 500px;
+  width: 70px;
+  position: absolute;
+  left: 300px;
+  transform-origin: bottom;
+}
+
+.barBg {
+  background-color: #666666;
+  height: 500px;
+  width: 70px;
+  position: absolute;
+  left: 300px;
+  z-index: -1;
+}
+
+@keyframes timer {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+  }
+}
+
+.timer {
+  animation: timer 10s linear;
+}
+
+.green {
+  background-image: linear-gradient(0deg, rgb(7, 231, 36), rgb(7, 249, 140));
+}
+
+.red {
+  background-image: linear-gradient(0deg, rgb(255, 99, 0), rgb(254, 129, 38));
 }

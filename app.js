@@ -79,9 +79,6 @@ app.post('/game', (req, res)=>{
   let cat = sesh.trivia.cat;
   let diff = sesh.trivia.diff;
   console.log(chalk.green(pick, correctAns));
-  // if(pick != "correct"){
-  //   res.render('gameLoser', { sesh })
-  // } else {
     getQuestion(cat, diff)
     .then((ques) =>{
       sesh.trivia = {};
